@@ -1,4 +1,4 @@
-# AWS S3 Sync for GitHub Action
+# AWS S3 Sync
 
 ## Usage
 
