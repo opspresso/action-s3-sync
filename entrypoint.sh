@@ -17,13 +17,13 @@ _publish_pre() {
     AWS_REGION="us-east-1"
   fi
 
+  if [ -z "${FROM_PATH}" ]; then
+    FROM_PATH="."
+  fi
+
   if [ -z "${DEST_PATH}" ]; then
     echo "DEST_PATH is not set."
     exit 1
-  fi
-
-  if [ -z "${FROM_PATH}" ]; then
-    FROM_PATH="."
   fi
 }
 
