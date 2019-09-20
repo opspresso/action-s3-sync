@@ -10,9 +10,7 @@ LABEL repository="https://github.com/opspresso/action-s3-sync"
 LABEL maintainer="Jungyoul Yu <me@nalbam.com>"
 LABEL homepage="https://opspresso.com/"
 
-ENV AWSCLI_VERSION="1.16.242"
-
-RUN pip install --quiet --no-cache-dir awscli==${AWSCLI_VERSION}
+RUN pip install --quiet --no-cache-dir awscli
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
