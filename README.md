@@ -1,4 +1,4 @@
-# action-s3-sync
+# AWS S3 Sync for GitHub Action
 
 ## Usage
 
@@ -19,8 +19,8 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: "us-east-1"
-        DEST_PATH: "s3://your_bucket_name/"
         FROM_PATH: "./target/publish"
+        DEST_PATH: "s3://your_bucket_name/path/"
 ```
 
 ## env
@@ -30,8 +30,8 @@ Key | Value | Default | Required
 AWS_ACCESS_KEY_ID | Your AWS Access Key. | | Yes
 AWS_SECRET_ACCESS_KEY | Your AWS Access Key. | | Yes
 AWS_REGION | Your AWS Region. | us-east-1 | No
-DEST_PATH | The remote path you wish to sync to local path. | / | No
 FROM_PATH | The local path you wish to sync to remote path. | . | No
+DEST_PATH | The remote path you wish to sync to local path. | | Yes
 
 ## exec
 
@@ -43,5 +43,5 @@ ${AWS_REGION}
 text
 EOF
 
-aws s3 sync ${FROM_PATH} s3://${AWS_S3_BUCKET}${DEST_PATH} --no-progress $*"
+aws s3 sync ${FROM_PATH} ${DEST_PATH} --no-progress $*"
 ```
