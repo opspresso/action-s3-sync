@@ -18,9 +18,8 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_REGION: "us-east-1"
-        DEST_PATH: "/"
+        DEST_PATH: "s3://your_bucket_name/"
         FROM_PATH: "./target/publish"
 ```
 
@@ -30,7 +29,6 @@ Key | Value | Default | Required
 --- | ----- | ------- | --------
 AWS_ACCESS_KEY_ID | Your AWS Access Key. | | Yes
 AWS_SECRET_ACCESS_KEY | Your AWS Access Key. | | Yes
-AWS_S3_BUCKET | Your AWS S3 Bucket. | | Yes
 AWS_REGION | Your AWS Region. | us-east-1 | No
 DEST_PATH | The remote path you wish to sync to local path. | / | No
 FROM_PATH | The local path you wish to sync to remote path. | . | No

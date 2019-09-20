@@ -12,17 +12,13 @@ if [ -z "${AWS_SECRET_ACCESS_KEY}" ]; then
   exit 1
 fi
 
-if [ -z "${AWS_S3_BUCKET}" ]; then
-  echo "AWS_S3_BUCKET is not set."
-  exit 1
-fi
-
 if [ -z "${AWS_REGION}" ]; then
   AWS_REGION="us-east-1"
 fi
 
 if [ -z "${DEST_PATH}" ]; then
-  DEST_PATH="/"
+  echo "DEST_PATH is not set."
+  exit 1
 fi
 
 if [ -z "${FROM_PATH}" ]; then
@@ -36,4 +32,4 @@ ${AWS_REGION}
 text
 EOF
 
-aws s3 sync ${FROM_PATH} s3://${AWS_S3_BUCKET}${DEST_PATH} --no-progress $*"
+aws s3 sync ${FROM_PATH} ${DEST_PATH} $*
