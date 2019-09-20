@@ -37,7 +37,7 @@ ${AWS_REGION}
 text
 EOF
 
-  aws s3 sync ${FROM_PATH} ${DEST_PATH} $*
+  aws s3 sync ${FROM_PATH} ${DEST_PATH} ${OPTIONS}
 }
 
 _publish
