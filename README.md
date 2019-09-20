@@ -8,7 +8,7 @@ name: AWS S3 Sync
 on: push
 
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
