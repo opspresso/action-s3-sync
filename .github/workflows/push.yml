@@ -1,0 +1,31 @@
+name: Build-Push
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: Package
+      run: |
+        bash ./package.sh
+
+    - name: Release
+      uses: opspresso/action-release@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    # - name: Slack
+    #   uses: opspresso/action-slack@master
+    #   env:
+    #     SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+    #     JSON_PATH: ./target/slack_message.json
