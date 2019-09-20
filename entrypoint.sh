@@ -1,14 +1,22 @@
 #!/bin/bash
 
+_error() {
+  echo -e "$1"
+
+  if [ ! -z "${LOOSE_ERROR}" ]; then
+    exit 0
+  else
+    exit 1
+  fi
+}
+
 _publish_pre() {
   if [ -z "${AWS_ACCESS_KEY_ID}" ]; then
-    echo "AWS_ACCESS_KEY_ID is not set."
-    exit 1
+    _error "AWS_ACCESS_KEY_ID is not set."
   fi
 
   if [ -z "${AWS_SECRET_ACCESS_KEY}" ]; then
-    echo "AWS_SECRET_ACCESS_KEY is not set."
-    exit 1
+    _error "AWS_SECRET_ACCESS_KEY is not set."
   fi
 
   if [ -z "${AWS_REGION}" ]; then
@@ -20,8 +28,7 @@ _publish_pre() {
   fi
 
   if [ -z "${DEST_PATH}" ]; then
-    echo "DEST_PATH is not set."
-    exit 1
+    _error "DEST_PATH is not set."
   fi
 }
 
@@ -40,7 +47,7 @@ EOF
   aws s3 sync ${FROM_PATH} ${DEST_PATH} ${OPTIONS}
 
   # s3://bucket/path
-  if [ "${DEST_PATH:0:5}" == "s3://" ]; then
+  if [ "${DEST_PATH:0:3}" == "s3:" ]; then
     BUCKET="$(echo "${DEST_PATH}" | cut -d'/' -f3)"
 
     # aws cf reset
