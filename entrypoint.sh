@@ -1,6 +1,4 @@
-#!/bin/sh
-
-set -e
+#!/bin/bash
 
 _publish_pre() {
   if [ -z "${AWS_ACCESS_KEY_ID}" ]; then
