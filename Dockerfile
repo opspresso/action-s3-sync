@@ -1,4 +1,4 @@
-FROM opspresso/awscli
+FROM opspresso/builder:v0.6.4
 
 LABEL "com.github.actions.name"="AWS S3 Sync"
 LABEL "com.github.actions.description"="Sync a directory to an AWS S3 repository"
