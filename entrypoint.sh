@@ -3,7 +3,7 @@
 _error() {
   echo -e "$1"
 
-  if [ ! -z "${LOOSE_ERROR}" ]; then
+  if [ "${LOOSE_ERROR}" == "true" ]; then
     exit 0
   else
     exit 1
