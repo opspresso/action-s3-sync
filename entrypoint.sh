@@ -10,7 +10,7 @@ _error() {
   fi
 }
 
-_publish_pre() {
+_aws_pre() {
   if [ -z "${AWS_ACCESS_KEY_ID}" ]; then
     _error "AWS_ACCESS_KEY_ID is not set."
   fi
@@ -30,6 +30,10 @@ ${AWS_SECRET_ACCESS_KEY}
 ${AWS_REGION}
 text
 EOF
+}
+
+_publish_pre() {
+  _aws_pre
 
   if [ -z "${FROM_PATH}" ]; then
     FROM_PATH="."
