@@ -38,7 +38,7 @@ _publish_pre() {
 
   if [ -z "${DEST_PATH}" ]; then
     # _error "DEST_PATH is not set."
-    REPONAME="s3://${REPONAME}"
+    DEST_PATH="s3://${REPONAME}"
   fi
 }
 
