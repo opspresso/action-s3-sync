@@ -52,7 +52,7 @@ EOF
   aws s3 sync ${FROM_PATH} ${DEST_PATH} ${OPTIONS}
 
   # s3://bucket/path
-  if [ "${DEST_PATH:0:3}" == "s3:" ]; then
+  if [[ "${DEST_PATH:0:5}" == "s3://" ]]; then
     BUCKET="$(echo "${DEST_PATH}" | cut -d'/' -f3)"
 
     # aws cf reset
