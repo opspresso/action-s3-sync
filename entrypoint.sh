@@ -60,6 +60,7 @@ EOF
   # s3://bucket/path
   if [[ "${DEST_PATH:0:5}" == "s3://" ]]; then
     BUCKET="$(echo "${DEST_PATH}" | cut -d'/' -f3)"
+    echo "BUCKET=${BUCKET}"
 
     # aws cf reset
     CFID=$(aws cloudfront list-distributions --query "DistributionList.Items[].{Id:Id,Origin:Origins.Items[0].DomainName}[?contains(Origin,'${BUCKET}')] | [0]" | grep 'Id' | cut -d'"' -f4)
