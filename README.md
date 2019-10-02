@@ -1,5 +1,8 @@
 # AWS S3 Sync
 
+[![GitHub Actions status](https://github.com/opspresso/action-s3-sync/workflows/Build-Push/badge.svg)](https://github.com/opspresso/action-s3-sync/actions)
+[![GitHub Releases](https://img.shields.io/github/release/opspresso/action-s3-sync.svg)](https://github.com/opspresso/action-s3-sync/releases)
+
 ## Usage
 
 ```yaml
