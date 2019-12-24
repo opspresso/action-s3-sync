@@ -40,6 +40,10 @@ _publish_pre() {
     # _error "DEST_PATH is not set."
     DEST_PATH="s3://${REPONAME}"
   fi
+
+  if [ -z "${CF_RESET}" ]; then
+    CF_RESET="true"
+  fi
 }
 
 _publish() {
@@ -57,15 +61,17 @@ EOF
   echo "aws s3 sync ${FROM_PATH} ${DEST_PATH}"
   aws s3 sync ${FROM_PATH} ${DEST_PATH} ${OPTIONS}
 
-  # s3://bucket/path
-  if [[ "${DEST_PATH:0:5}" == "s3://" ]]; then
-    BUCKET="$(echo "${DEST_PATH}" | cut -d'/' -f3)"
+  if [ "${CF_RESET}" == "true" ]; then
+    # s3://bucket/path
+    if [[ "${DEST_PATH:0:5}" == "s3://" ]]; then
+      BUCKET="$(echo "${DEST_PATH}" | cut -d'/' -f3)"
 
-    # aws cf reset
-    CFID=$(aws cloudfront list-distributions --query "DistributionList.Items[].{Id:Id,Origin:Origins.Items[0].DomainName}[?contains(Origin,'${BUCKET}')] | [0]" | awk '{print $1}')
-    if [ "${CFID}" != "" ]; then
-        echo "aws cloudfront create-invalidation ${CFID}"
-        aws cloudfront create-invalidation --distribution-id ${CFID} --paths "/*"
+      # aws cf reset
+      CFID=$(aws cloudfront list-distributions --query "DistributionList.Items[].{Id:Id,Origin:Origins.Items[0].DomainName}[?contains(Origin,'${BUCKET}')] | [0]" | awk '{print $1}')
+      if [ "${CFID}" != "" ]; then
+          echo "aws cloudfront create-invalidation ${CFID}"
+          aws cloudfront create-invalidation --distribution-id ${CFID} --paths "/*"
+      fi
     fi
   fi
 }

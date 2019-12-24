@@ -37,6 +37,7 @@ Name | Description | Default | Required
 AWS_ACCESS_KEY_ID | Your AWS Access Key. | | **Yes**
 AWS_SECRET_ACCESS_KEY | Your AWS Secret Access Key. | | **Yes**
 AWS_REGION | Your AWS Region. | us-east-1 | No
+CF_RESET | `true` to aws cloudfront create-invalidation. | true | No
 FROM_PATH | The local path you wish to sync to remote path. | . | No
 DEST_PATH | The remote path you wish to sync from local path. | | **Yes**
 OPTIONS | Additional parameters. | | No
