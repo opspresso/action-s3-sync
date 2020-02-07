@@ -1,11 +1,11 @@
-name: 'AWS S3 Sync'
-description: 'Sync a directory to an AWS S3 repository'
-author: 'Jungyoul Yu <@nalbam>'
+name: "AWS S3 Sync"
+description: "Sync a directory to an AWS S3 repository"
+author: "Jungyoul Yu <@nalbam>"
 
 branding:
-  icon: 'refresh-cw'
-  color: 'green'
+  icon: "refresh-cw"
+  color: "green"
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
