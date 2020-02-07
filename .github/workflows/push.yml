@@ -22,3 +22,14 @@ jobs:
         env:
           USERNAME: ${{ secrets.DOCKER_USERNAME }}
           PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          LATEST: "true"
+
+      - name: Build & Push to GitHub Package
+        uses: opspresso/action-builder@v0.2.6
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          PASSWORD: ${{ secrets.GITHUB_PERSONAL_TOKEN }}
+          REGISTRY: "docker.pkg.github.com"
+          LATEST: "true"
