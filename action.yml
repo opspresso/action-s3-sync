@@ -8,4 +8,4 @@ branding:
 
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: "docker://opspresso/action-s3-sync:v0.2.3"
