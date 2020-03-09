@@ -2,8 +2,8 @@ name: Build-Push
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - "*"
 
 jobs:
   build:
