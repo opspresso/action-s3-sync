@@ -1,4 +1,4 @@
-name: Build-Push
+name: Build-Tag
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 1
 
       - name: Docker Build & Push to Docker Hub
-        uses: opspresso/action-builder@master
+        uses: opspresso/action-docker@master
         with:
           args: --docker
         env:
@@ -25,7 +25,7 @@ jobs:
           LATEST: "true"
 
       - name: Docker Build & Push to GitHub Package
-        uses: opspresso/action-builder@master
+        uses: opspresso/action-docker@master
         with:
           args: --docker
         env:
