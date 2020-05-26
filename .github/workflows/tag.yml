@@ -22,6 +22,7 @@ jobs:
         env:
           USERNAME: ${{ secrets.DOCKER_USERNAME }}
           PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          TAG_NAME: ${{ github.ref }}
           LATEST: "true"
 
       - name: Docker Build & Push to GitHub Package
@@ -32,3 +33,4 @@ jobs:
           USERNAME: ${{ secrets.DOCKER_USERNAME }}
           PASSWORD: ${{ secrets.GITHUB_PERSONAL_TOKEN }}
           REGISTRY: "docker.pkg.github.com"
+          TAG_NAME: ${{ github.ref }}
