@@ -30,7 +30,7 @@ jobs:
         with:
           args: --docker
         env:
-          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          # USERNAME: ${{ secrets.DOCKER_USERNAME }}
           PASSWORD: ${{ secrets.GH_PERSONAL_TOKEN }}
           REGISTRY: "docker.pkg.github.com"
           TAG_NAME: ${{ github.ref }}
