@@ -15,6 +15,14 @@ _error() {
   fi
 }
 
+_error_check() {
+  RESULT=$?
+
+  if [ ${RESULT} != 0 ]; then
+    _error ${RESULT}
+  fi
+}
+
 _aws_pre() {
   if [ -z "${AWS_ACCESS_KEY_ID}" ]; then
     _error "AWS_ACCESS_KEY_ID is not set."
@@ -60,6 +68,8 @@ EOF
   # aws s3 sync
   echo "aws s3 sync ${FROM_PATH} ${DEST_PATH}"
   aws s3 sync ${FROM_PATH} ${DEST_PATH} ${OPTIONS}
+
+  _error_check
 
   if [ "${CF_RESET}" == "true" ]; then
     # s3://bucket/path
